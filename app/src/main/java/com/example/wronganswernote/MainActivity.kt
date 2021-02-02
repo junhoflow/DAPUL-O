@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
@@ -48,6 +49,30 @@ class MainActivity : AppCompatActivity() {
         button_eight.setOnClickListener{
             val intent = Intent(this, EightActivity::class.java)
             startActivity(intent)
+        }
+
+        val howto_btn = findViewById<Button>(R.id.howto_btn)
+        howto_btn.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.howto_popup, null)
+            val button = dialogView.findViewById<Button>(R.id.cancel)
+            builder.setView(dialogView).show()
+
+            button.setOnClickListener{
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        val bug_btn = findViewById<Button>(R.id.bug_btn)
+        bug_btn.setOnClickListener{
+            val email = Intent(Intent.ACTION_SEND)
+            email.type = "plain/text"
+            val address = arrayOf("tikibird@naver.com")
+            email.putExtra(Intent.EXTRA_EMAIL, address)
+            email.putExtra(Intent.EXTRA_SUBJECT, "<======= ⭕다풀오⭕ 개발자에게 메일보내기 ======>")
+            email.putExtra(Intent.EXTRA_TEXT, "앱 버전: ${BuildConfig.VERSION_NAME}\nAndroid(SDK): ${Build.VERSION.SDK_INT}\n 핸드폰 기종: \n 내용:")
+            startActivity(email)
         }
     }
 

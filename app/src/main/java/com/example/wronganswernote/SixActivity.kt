@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import java.lang.Exception
@@ -67,6 +68,11 @@ class SixActivity : AppCompatActivity() {
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
+        }
+        val cancel_6 = findViewById<Button>(R.id.cancel_6)
+        cancel_6.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
