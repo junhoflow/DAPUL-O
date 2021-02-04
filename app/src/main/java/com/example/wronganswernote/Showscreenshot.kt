@@ -12,7 +12,7 @@ class Showscreenshot : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_showscreenshot)
-        this.setTitle("Hasil Screenshot")
+        this.setTitle("Screenshot")
 
         viewscreenshot = findViewById(R.id.viewscreenshot)
 

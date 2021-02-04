@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +15,13 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import java.lang.Integer.parseInt
 
 
 class MainActivity : AppCompatActivity() {
 
     var todo : String = ""
+    var counting_ : Int = 10
     private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
         val saving_btn = findViewById<Button>(R.id.saving_btn)
         val todolist = findViewById<EditText>(R.id.todolist)
+        val counting = findViewById<TextView>(R.id.counting)
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         var st = prefs.getString("todo", "")
         todolist?.setText(st)
@@ -95,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             todo = todolist.text.toString()
+            counting_ = parseInt(counting.text.toString())
 
             val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
             val editor: SharedPreferences.Editor = prefs.edit()
@@ -105,8 +110,4 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "저장되었습니다", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
-
 }

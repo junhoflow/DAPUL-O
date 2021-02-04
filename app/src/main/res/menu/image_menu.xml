@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filter"
+        android:title="흑백필터"/>
+
+    <item
+        android:id="@+id/rotate1"
+        android:title="90° 회전"/>
+
+    <item
+        android:id="@+id/rotate2"
+        android:title="180° 회전"/>
+
+</menu>

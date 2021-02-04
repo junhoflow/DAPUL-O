@@ -6,8 +6,10 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.ColorFilter
 import android.graphics.ColorMatrixColorFilter
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -49,7 +51,6 @@ class TwoActivity : AppCompatActivity() {
         screenshot = Screenshot(this)
         sharescreenshot = Sharescreenshot()
 
-
         val currentDateTime = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(currentDateTime)
         val nowtime = findViewById<TextView>(R.id.nowtime)
@@ -63,8 +64,28 @@ class TwoActivity : AppCompatActivity() {
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
+        var angle = 0f
+        var angle2 = 0f
         imageView.setOnLongClickListener(OnLongClickListener {
-            setBlackAndWhite(imageView)
+            val popupMenu: PopupMenu = PopupMenu(this, imageView)
+            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.filter -> {
+                        setBlackAndWhite(imageView)
+                    }
+                    R.id.rotate1 ->{
+                        imageView.rotation = 90f + angle
+                        angle += 90f
+                    }
+                    R.id.rotate2 ->{
+                        imageView.rotation = 180f + angle2
+                        angle2 -= 180f
+                    }
+                }
+                true
+            })
+            popupMenu.show()
             true
         })
 
@@ -74,8 +95,28 @@ class TwoActivity : AppCompatActivity() {
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
+        var angle3 = 0f
+        var angle4 = 0f
         imageView2.setOnLongClickListener(OnLongClickListener {
-            setBlackAndWhite(imageView2)
+            val popupMenu: PopupMenu = PopupMenu(this, imageView2)
+            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.filter -> {
+                        setBlackAndWhite(imageView2)
+                    }
+                    R.id.rotate1 ->{
+                        imageView2.rotation = 90f + angle3
+                        angle3 += 90f
+                    }
+                    R.id.rotate2 ->{
+                        imageView2.rotation = 180f + angle4
+                        angle4 -= 180f
+                    }
+                }
+                true
+            })
+            popupMenu.show()
             true
         })
 
@@ -92,17 +133,14 @@ class TwoActivity : AppCompatActivity() {
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.item1 ->{
-                        ambilscreenshot()
+                        ambilscreenshot(constsView)
+                        Toast.makeText(this, "시험지가 저장되었습니다.", Toast.LENGTH_SHORT).show()
                     }
                     R.id.item2 -> {
                         lihatfilescreenshot()
-                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT)
-                            .show()
                     }
                     R.id.item3 -> {
                         bagiscreenshot()
-                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT)
-                            .show()
                     }
                 }
                 true
@@ -113,13 +151,18 @@ class TwoActivity : AppCompatActivity() {
 
     }
 
-    fun ambilscreenshot() {
-        val bitmap: Bitmap? = screenshot.getViewScreenshot(
-            constsView,
-            constsView.height,
-            constsView.width
-        )
-        bitmap?.let { screenshot.saveScreenshot(it) };
+    fun Rotation(i: Int){
+
+    }
+
+    fun ambilscreenshot(view: View) {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val bgDrawable: Drawable = view.background
+        bgDrawable.draw(canvas)
+        view.draw(canvas)
+
+        bitmap?.let { screenshot.saveScreenshot(it) }
     }
 
     fun bagiscreenshot() {
