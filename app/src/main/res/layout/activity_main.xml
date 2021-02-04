@@ -26,15 +26,16 @@
                 app:icon="@drawable/ic_baseline_email_24"
                 android:stateListAnimator="@null"
                 android:layout_weight="1"
-                app:iconTint="#51000000" />
+                app:iconTint="#D5D5D5" />
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
+
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
-                android:layout_height="217dp"
+                android:layout_height="163dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="3"
                 app:srcCompat="@drawable/logo_removed" />
@@ -51,7 +52,7 @@
                 app:icon="@drawable/ic_baseline_help_24"
                 android:stateListAnimator="@null"
                 android:layout_weight="1"
-                app:iconTint="#51000000" />
+                app:iconTint="#D5D5D5" />
         </LinearLayout>
 
         <View
@@ -72,7 +73,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="► 해야할 것 정리"
+                    android:text="► Todo List"
                     android:textColor="#2E2E2E"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -80,6 +81,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
+
                 <Button
                     android:id="@+id/saving_btn"
                     android:layout_width="80dp"
@@ -88,13 +90,13 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    app:backgroundTint="#FF9800" />
+                    app:backgroundTint="#DDFF9800" />
             </LinearLayout>
 
             <EditText
                 android:id="@+id/todolist"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="182dp"
                 android:layout_gravity="center"
                 android:background="@drawable/round_rectangle_fill"
                 android:textColor="#000000" />
@@ -105,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="15dp"
             android:gravity="bottom"
             android:orientation="vertical">
 
@@ -120,6 +122,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -131,8 +134,8 @@
                     android:lineSpacingExtra="36sp"
                     android:text="2"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp"
-                    app:backgroundTint="#4CAF50" />
+                    android:textSize="36sp"
+                    app:backgroundTint="#DF8BC34A" />
 
                 <View
                     android:layout_width="20dp"
@@ -146,8 +149,8 @@
                     android:layout_weight="1"
                     android:text="4"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp"
-                    app:backgroundTint="#4CAF50" />
+                    android:textSize="36sp"
+                    app:backgroundTint="#DF8BC34A" />
 
             </LinearLayout>
 
@@ -156,6 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp"
                 android:weightSum="2">
 
                 <Button
@@ -165,8 +169,8 @@
                     android:layout_weight="1"
                     android:text="6"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp"
-                    app:backgroundTint="#4CAF50" />
+                    android:textSize="36sp"
+                    app:backgroundTint="#DD4CAF50" />
 
                 <View
                     android:layout_width="20dp"
@@ -180,14 +184,22 @@
                     android:layout_weight="1"
                     android:text="8"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp"
-                    app:backgroundTint="#4CAF50" />
+                    android:textSize="36sp"
+                    app:backgroundTint="#DF4CAF50" />
 
             </LinearLayout>
-
-
         </LinearLayout>
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111">
+
+        </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
 

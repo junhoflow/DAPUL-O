@@ -2,14 +2,20 @@ package com.example.wronganswernote
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.ColorFilter
+import android.graphics.ColorMatrixColorFilter
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +28,10 @@ class FourActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_four)
+
+        val adView = findViewById<AdView>(R.id.adView)
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111")
+        adView.loadAd(AdRequest.Builder().build())
 
         val currentDateTime = Calendar.getInstance().time
         var dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(currentDateTime)
@@ -38,24 +48,40 @@ class FourActivity : AppCompatActivity() {
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
+        imageView.setOnLongClickListener(View.OnLongClickListener {
+            setBlackAndWhite(imageView)
+            true
+        })
         imageView2.setOnClickListener{
             checking = 2
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
+        imageView2.setOnLongClickListener(View.OnLongClickListener {
+            setBlackAndWhite(imageView2)
+            true
+        })
         imageView3.setOnClickListener{
             checking = 3
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
+        imageView3.setOnLongClickListener(View.OnLongClickListener {
+            setBlackAndWhite(imageView3)
+            true
+        })
         imageView4.setOnClickListener{
             checking = 4
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
+        imageView4.setOnLongClickListener(View.OnLongClickListener {
+            setBlackAndWhite(imageView4)
+            true
+        })
 
         val cancel_4 = findViewById<Button>(R.id.cancel_4)
         cancel_4.setOnClickListener{
@@ -89,5 +115,15 @@ class FourActivity : AppCompatActivity() {
         } else {
             Log.d("ActivityResult", "something wrong")
         }
+    }
+    private fun setBlackAndWhite(iv: ImageView?) {
+        val colorMatrix = floatArrayOf(
+            0.33f, 0.33f, 0.33f, 0f, 70f,  //red
+            0.33f, 0.33f, 0.33f, 0f, 70f,  //green
+            0.33f, 0.33f, 0.33f, 0f, 70f,
+            0f, 0f, 0f, 1f, 0f
+        )
+        val colorFilter: ColorFilter = ColorMatrixColorFilter(colorMatrix)
+        iv!!.colorFilter = colorFilter
     }
 }
