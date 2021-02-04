@@ -10,9 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -88,6 +86,25 @@ class FourActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        val flat_logo4 = findViewById<ImageView>(R.id.flat_logo4)
+        flat_logo4.setOnClickListener{
+            val popupMenu: PopupMenu = PopupMenu(this, flat_logo4)
+            popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.item1 ->
+                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    R.id.item2 ->
+                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                    R.id.item3 ->
+                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                }
+                true
+            })
+            popupMenu.show()
+        }
+
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

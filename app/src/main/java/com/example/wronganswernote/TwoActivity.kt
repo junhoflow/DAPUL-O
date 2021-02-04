@@ -1,30 +1,41 @@
 package com.example.wronganswernote
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.ColorFilter
 import android.graphics.ColorMatrixColorFilter
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.view.View.OnLongClickListener
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class TwoActivity : AppCompatActivity() {
 
     private val OPEN_GALLERY = 1
     var checking : Int = 0
-    var brightnessBar: SeekBar? = null
+
+    lateinit var screenshot : Screenshot
+    lateinit var sharescreenshot: Sharescreenshot
+    lateinit var constsView : LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +44,11 @@ class TwoActivity : AppCompatActivity() {
         val adView = findViewById<AdView>(R.id.adView)
         MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111")
         adView.loadAd(AdRequest.Builder().build())
+
+        constsView = findViewById(R.id.ConstsView)
+        screenshot = Screenshot(this)
+        sharescreenshot = Sharescreenshot()
+
 
         val currentDateTime = Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(currentDateTime)
@@ -69,7 +85,52 @@ class TwoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val flat_logo2 = findViewById<ImageView>(R.id.flat_logo2)
+        flat_logo2.setOnClickListener{
+            val popupMenu: PopupMenu = PopupMenu(this, flat_logo2)
+            popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.item1 ->{
+                        ambilscreenshot()
+                    }
+                    R.id.item2 -> {
+                        lihatfilescreenshot()
+                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    R.id.item3 -> {
+                        bagiscreenshot()
+                        Toast.makeText(this, "You Clicked : " + item.title, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+                true
+            })
+            popupMenu.show()
+        }
+
+
     }
+
+    fun ambilscreenshot() {
+        val bitmap: Bitmap? = screenshot.getViewScreenshot(
+            constsView,
+            constsView.height,
+            constsView.width
+        )
+        bitmap?.let { screenshot.saveScreenshot(it) };
+    }
+
+    fun bagiscreenshot() {
+        val fileScreenshot = File(this.getExternalFilesDir(null)!!.absolutePath + "/Screenshot/Screenshot.jpg")
+        startActivity(sharescreenshot.ShareFileScreenshot(fileScreenshot))
+    }
+
+    fun lihatfilescreenshot(){
+        startActivity(Intent(this, Showscreenshot::class.java))
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
