@@ -7,16 +7,17 @@ import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.preference.PreferenceManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import java.lang.Integer.parseInt
 
 
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     var todo: String = ""
     private lateinit var mInterstitialAd: InterstitialAd
+    private lateinit var mRewardedAd: RewardedAd
+
 
     lateinit var preferences: SharedPreferences
     var isRunning: Boolean = false
@@ -36,6 +39,19 @@ class MainActivity : AppCompatActivity() {
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
         mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+        mRewardedAd = RewardedAd(this, "ca-app-pub-3940256099942544/5224354917")
+
+        val rewardAd_btn = findViewById<Button>(R.id.rewardAd_btn)
+        val progressbar = findViewById<ProgressBar>(R.id.progressBar)
+        val adLoadCallback = object : RewardedAdLoadCallback() {
+            override fun onRewardedAdLoaded() {
+                super.onRewardedAdLoaded()
+                progressbar.visibility = GONE
+                rewardAd_btn.visibility = VISIBLE
+            }
+        }
+        mRewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
 
         val adView = findViewById<AdView>(R.id.adView)
         MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111")
@@ -50,20 +66,36 @@ class MainActivity : AppCompatActivity() {
         val button_six = findViewById<Button>(R.id.button_six)
         val button_eight = findViewById<Button>(R.id.button_eight)
         button_two.setOnClickListener {
-            val intent = Intent(this, TwoActivity::class.java)
-            startActivity(intent)
+            if(App.restricted == 0) {
+                val intent = Intent(this, TwoActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "횟수가 부족합니다. 광고시청 혹은 다풀오PRO버전을 이용해보세요!", Toast.LENGTH_SHORT).show()
+            }
         }
         button_four.setOnClickListener {
-            val intent = Intent(this, FourActivity::class.java)
-            startActivity(intent)
+            if(App.restricted == 0) {
+                val intent = Intent(this, FourActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "횟수가 부족합니다. 광고시청 혹은 다풀오PRO버전을 이용해보세요!", Toast.LENGTH_SHORT).show()
+            }
         }
         button_six.setOnClickListener {
-            val intent = Intent(this, SixActivity::class.java)
-            startActivity(intent)
+            if(App.restricted == 0) {
+                val intent = Intent(this, SixActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "횟수가 부족합니다. 광고시청 혹은 다풀오PRO버전을 이용해보세요!", Toast.LENGTH_SHORT).show()
+            }
         }
         button_eight.setOnClickListener {
-            val intent = Intent(this, EightActivity::class.java)
-            startActivity(intent)
+            if(App.restricted == 0) {
+                val intent = Intent(this, EightActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "횟수가 부족합니다. 광고시청 혹은 다풀오PRO버전을 이용해보세요!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         val howto_btn = findViewById<Button>(R.id.howto_btn)
@@ -126,16 +158,23 @@ class MainActivity : AppCompatActivity() {
         isRunning = false
     }
 
-    inner class ThreadClass: Thread(){
-        override fun run(){
-            while(isRunning){
+    inner class ThreadClass : Thread() {
+        override fun run() {
+            while (isRunning) {
                 SystemClock.sleep(100)
                 val cnt = preferences.getInt("CNT", 0)
                 App.TotalCount = cnt
                 var counting = findViewById<TextView>(R.id.counting)
                 var math: Int = 15 - cnt
-                runOnUiThread{
+                runOnUiThread {
                     counting.text = "$math"
+
+                    if(math == 0 || math < 0){
+                        counting.text = "0"
+                        App.restricted++
+                    } else {
+                        App.restricted = 0
+                    }
                 }
 
             }
