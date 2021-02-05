@@ -245,8 +245,7 @@ class SixActivity : AppCompatActivity() {
         })
         val cancel_6 = findViewById<Button>(R.id.cancel_6)
         cancel_6.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val flat_logo6 = findViewById<ImageView>(R.id.flat_logo6)

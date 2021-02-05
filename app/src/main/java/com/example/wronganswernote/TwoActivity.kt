@@ -126,8 +126,7 @@ class TwoActivity : AppCompatActivity() {
 
         val cancel_2 = findViewById<Button>(R.id.cancel_2)
         cancel_2.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val flat_logo2 = findViewById<ImageView>(R.id.flat_logo2)

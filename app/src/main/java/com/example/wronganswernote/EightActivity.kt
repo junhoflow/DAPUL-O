@@ -309,8 +309,7 @@ class EightActivity : AppCompatActivity() {
         })
         val cancel_8 = findViewById<Button>(R.id.cancel_8)
         cancel_8.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val flat_logo8 = findViewById<ImageView>(R.id.flat_logo8)

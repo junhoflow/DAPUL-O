@@ -183,8 +183,7 @@ class FourActivity : AppCompatActivity() {
 
         val cancel_4 = findViewById<Button>(R.id.cancel_4)
         cancel_4.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val flat_logo4 = findViewById<ImageView>(R.id.flat_logo4)
