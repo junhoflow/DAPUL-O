@@ -1,7 +1,9 @@
 package com.example.wronganswernote
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.ColorFilter
@@ -25,6 +27,8 @@ import java.util.*
 class EightActivity : AppCompatActivity() {
     private val OPEN_GALLERY = 1
     var checking : Int = 0
+
+    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var screenshot : Screenshot
     lateinit var sharescreenshot: Sharescreenshot
@@ -57,6 +61,7 @@ class EightActivity : AppCompatActivity() {
         val imageView8 = findViewById<ImageView>(R.id.imageView8)
         imageView.setOnClickListener{
             checking = 1
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -87,6 +92,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView2.setOnClickListener{
             checking = 2
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -117,6 +123,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView3.setOnClickListener{
             checking = 3
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -147,6 +154,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView4.setOnClickListener{
             checking = 4
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -177,6 +185,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView5.setOnClickListener{
             checking = 5
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -207,6 +216,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView6.setOnClickListener{
             checking = 6
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -237,6 +247,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView7.setOnClickListener{
             checking = 7
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -267,6 +278,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView8.setOnClickListener{
             checking = 8
+            App.eight_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -316,11 +328,48 @@ class EightActivity : AppCompatActivity() {
                     }
                     R.id.item3 ->{
                         bagiscreenshot()
+                        App.eight_clicked++
                     }
                 }
                 true
             })
             popupMenu.show()
+        }
+
+        if (App.eight_count > 6 || App.eight_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.eight_clicked = 0
+            App.eight_count = 0
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (App.eight_count > 6 || App.eight_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.eight_clicked = 0
+            App.eight_count = 0
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (App.eight_count > 6 || App.eight_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.eight_clicked = 0
+            App.eight_count = 0
         }
     }
 

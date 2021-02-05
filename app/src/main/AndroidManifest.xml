@@ -19,12 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WrongAnswerNote">
+        <activity android:name=".ForLoading"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9542671839226052~3186250553" />
 
-        <activity android:name=".Showscreenshot"/>
+        <activity android:name=".Showscreenshot" />
         <activity android:name=".EightActivity" />
         <activity android:name=".SixActivity" />
         <activity android:name=".FourActivity" />

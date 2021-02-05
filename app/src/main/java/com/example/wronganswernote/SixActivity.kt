@@ -1,7 +1,9 @@
 package com.example.wronganswernote
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.ColorFilter
@@ -25,6 +27,8 @@ import java.util.*
 class SixActivity : AppCompatActivity() {
     private val OPEN_GALLERY = 1
     var checking : Int = 0
+
+    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var screenshot : Screenshot
     lateinit var sharescreenshot: Sharescreenshot
@@ -55,6 +59,7 @@ class SixActivity : AppCompatActivity() {
         val imageView6 = findViewById<ImageView>(R.id.imageView6)
         imageView.setOnClickListener{
             checking = 1
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -85,6 +90,7 @@ class SixActivity : AppCompatActivity() {
         })
         imageView2.setOnClickListener{
             checking = 2
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -115,6 +121,7 @@ class SixActivity : AppCompatActivity() {
         })
         imageView3.setOnClickListener{
             checking = 3
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -145,6 +152,7 @@ class SixActivity : AppCompatActivity() {
         })
         imageView4.setOnClickListener{
             checking = 4
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -175,6 +183,7 @@ class SixActivity : AppCompatActivity() {
         })
         imageView5.setOnClickListener{
             checking = 5
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -205,6 +214,7 @@ class SixActivity : AppCompatActivity() {
         })
         imageView6.setOnClickListener{
             checking = 6
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -254,11 +264,48 @@ class SixActivity : AppCompatActivity() {
                     }
                     R.id.item3 ->{
                         bagiscreenshot()
+                        App.six_clicked++
                     }
                 }
                 true
             })
             popupMenu.show()
+        }
+
+        if (App.six_count > 4 || App.six_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.six_clicked = 0
+            App.six_count = 0
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (App.six_count > 4 || App.six_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.six_clicked = 0
+            App.six_count = 0
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (App.six_count > 4 || App.six_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.six_clicked = 0
+            App.six_count = 0
         }
     }
 

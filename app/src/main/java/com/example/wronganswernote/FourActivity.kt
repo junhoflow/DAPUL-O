@@ -1,7 +1,9 @@
 package com.example.wronganswernote
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.ColorFilter
@@ -26,6 +28,7 @@ class FourActivity : AppCompatActivity() {
 
     private val OPEN_GALLERY = 1
     var checking : Int = 0
+    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var screenshot : Screenshot
     lateinit var sharescreenshot: Sharescreenshot
@@ -54,6 +57,7 @@ class FourActivity : AppCompatActivity() {
         val imageView4 = findViewById<ImageView>(R.id.imageView4)
         imageView.setOnClickListener{
             checking = 1
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -84,6 +88,7 @@ class FourActivity : AppCompatActivity() {
         })
         imageView2.setOnClickListener{
             checking = 2
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -114,6 +119,7 @@ class FourActivity : AppCompatActivity() {
         })
         imageView3.setOnClickListener{
             checking = 3
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -145,6 +151,7 @@ class FourActivity : AppCompatActivity() {
 
         imageView4.setOnClickListener{
             checking = 4
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -195,6 +202,7 @@ class FourActivity : AppCompatActivity() {
                     }
                     R.id.item3 ->{
                         bagiscreenshot()
+                        App.four_clicked++
                     }
                 }
                 true
@@ -202,6 +210,42 @@ class FourActivity : AppCompatActivity() {
             popupMenu.show()
         }
 
+        if (App.four_count > 2 || App.four_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.four_clicked = 0
+            App.four_count = 0
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (App.four_count > 2 || App.four_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.four_clicked = 0
+            App.four_count = 0
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (App.four_count > 2 || App.four_clicked == 1) {
+            App.TotalCount++
+            sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putInt("CNT", App.TotalCount)
+            editor.apply()
+            App.four_clicked = 0
+            App.four_count = 0
+        }
     }
 
     fun ambilscreenshot(view: View) {
