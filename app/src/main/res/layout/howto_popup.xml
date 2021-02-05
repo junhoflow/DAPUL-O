@@ -11,23 +11,23 @@
     <Button
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:stateListAnimator="@null"
+        android:layout_height="32dp"
         android:layout_marginTop="4dp"
+        android:stateListAnimator="@null"
         app:backgroundTint="#FFFFFF"
         app:icon="@drawable/ic_baseline_close_24"
         app:iconTint="#C3C3C3" />
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        app:srcCompat="@drawable/howtodo" />
+
     <TextView
-        android:id="@+id/content2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-<!--  여기에 이미지뷰로 하나 넣기 ppt로 꾸며서  -->
-
-
-
-
+        android:layout_height="wrap_content"
+        android:text="\n\n\n"/>
 
 
 

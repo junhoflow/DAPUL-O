@@ -1,5 +1,6 @@
 package com.example.wronganswernote
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -12,11 +13,10 @@ import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import java.lang.Integer.parseInt
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mInterstitialAd: InterstitialAd
     private lateinit var mRewardedAd: RewardedAd
 
-
+    lateinit var sharedPreferences: SharedPreferences
     lateinit var preferences: SharedPreferences
     var isRunning: Boolean = false
 
@@ -52,6 +52,34 @@ class MainActivity : AppCompatActivity() {
             }
         }
         mRewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
+
+        rewardAd_btn.setOnClickListener{
+            if(mRewardedAd.isLoaded){
+                val activityContext: Activity = this
+                val adCallback = object: RewardedAdCallback(){
+                    override fun onRewardedAdOpened() {
+                        super.onRewardedAdOpened()
+                    }
+
+                    override fun onRewardedAdClosed() {
+                        super.onRewardedAdClosed()
+                    }
+
+                    override fun onUserEarnedReward(p0: RewardItem) {
+                        App.howmanyAds++
+                        sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putInt("ADs", App.howmanyAds)
+                        editor.apply()
+                    }
+
+                    override fun onRewardedAdFailedToShow(p0: AdError?) {
+                        super.onRewardedAdFailedToShow(p0)
+                    }
+                }
+                mRewardedAd.show(activityContext, adCallback)
+            }
+        }
 
         val adView = findViewById<AdView>(R.id.adView)
         MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111")
@@ -163,9 +191,10 @@ class MainActivity : AppCompatActivity() {
             while (isRunning) {
                 SystemClock.sleep(100)
                 val cnt = preferences.getInt("CNT", 0)
+                val Ads = preferences.getInt("ADs", 0)
                 App.TotalCount = cnt
                 var counting = findViewById<TextView>(R.id.counting)
-                var math: Int = 15 - cnt
+                var math: Int = 15 - cnt + Ads
                 runOnUiThread {
                     counting.text = "$math"
 
