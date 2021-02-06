@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.DapulO.wronganswernote">
+    package="com.DapulO_pro.wronganswernote">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -24,12 +24,12 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9542671839226052~3186250553" />
 
-        <activity android:name="com.DapulO.wronganswernote.Showscreenshot" />
-        <activity android:name="com.DapulO.wronganswernote.EightActivity" />
-        <activity android:name="com.DapulO.wronganswernote.SixActivity" />
-        <activity android:name="com.DapulO.wronganswernote.FourActivity" />
-        <activity android:name="com.DapulO.wronganswernote.TwoActivity" />
-        <activity android:name="com.DapulO.wronganswernote.MainActivity">
+        <activity android:name="com.DapulO_pro.wronganswernote.Showscreenshot" />
+        <activity android:name="com.DapulO_pro.wronganswernote.EightActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.SixActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.FourActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.TwoActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +39,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.DapulO.wronganswernote.fileprovider"
+            android:authorities="com.DapulO_pro.wronganswernote.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
