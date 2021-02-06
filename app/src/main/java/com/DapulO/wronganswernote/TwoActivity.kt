@@ -40,9 +40,6 @@ class TwoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_two)
 
-        val adView = findViewById<AdView>(R.id.adView)
-        MobileAds.initialize(this, "ca-app-pub-9542671839226052/5710673240")
-        adView.loadAd(AdRequest.Builder().build())
 
         constsView = findViewById(R.id.ConstsView)
         screenshot = Screenshot(this)

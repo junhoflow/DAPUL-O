@@ -6,7 +6,6 @@ class App : Application() {
     companion object{
         var TotalCount: Int = 0
         var restricted: Int = 0
-        var howmanyAds: Int = 0
 
         var four_count: Int = 0
         var six_count: Int = 0

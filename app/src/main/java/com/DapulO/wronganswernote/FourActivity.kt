@@ -38,10 +38,6 @@ class FourActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_four)
 
-        val adView = findViewById<AdView>(R.id.adView)
-        MobileAds.initialize(this, "ca-app-pub-9542671839226052/5125253846")
-        adView.loadAd(AdRequest.Builder().build())
-
         constsView = findViewById(R.id.ConstsView4)
         screenshot = Screenshot(this)
         sharescreenshot = Sharescreenshot()

@@ -38,10 +38,6 @@ class EightActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eight)
 
-        val adView = findViewById<AdView>(R.id.adView)
-        MobileAds.initialize(this, "ca-app-pub-9542671839226052/2307518815")
-        adView.loadAd(AdRequest.Builder().build())
-
         constsView = findViewById(R.id.ConstsView8)
         screenshot = Screenshot(this)
         sharescreenshot = Sharescreenshot()
