@@ -22,11 +22,12 @@
                 android:id="@+id/bug_btn"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_weight="1"
+                android:stateListAnimator="@null"
                 app:backgroundTint="#FFFFFF"
                 app:icon="@drawable/ic_baseline_email_24"
-                android:stateListAnimator="@null"
-                android:layout_weight="1"
                 app:iconTint="#D5D5D5" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -39,6 +40,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_weight="3"
                 app:srcCompat="@drawable/logo_removed" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -48,10 +50,10 @@
                 android:id="@+id/howto_btn"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_weight="1"
+                android:stateListAnimator="@null"
                 app:backgroundTint="#FFFFFF"
                 app:icon="@drawable/ic_baseline_help_24"
-                android:stateListAnimator="@null"
-                android:layout_weight="1"
                 app:iconTint="#D5D5D5" />
         </LinearLayout>
 
@@ -89,8 +91,8 @@
                     android:id="@+id/saving_btn"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
-                    android:text="저장"
                     android:layout_marginRight="5dp"
+                    android:text="저장"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -120,11 +122,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="5">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="3">
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -132,10 +136,12 @@
                         android:textColor="#2E2E2E"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -143,6 +149,7 @@
                             android:textColor="#2E2E2E"
                             android:textSize="15sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/counting"
                             android:layout_width="wrap_content"
@@ -176,11 +183,26 @@
                     android:visibility="gone"
                     app:backgroundTint="#F44336" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyle"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="31dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp" />
+
+                    <TextView
+                        android:id="@+id/adtextview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="광고버튼 로딩중(횟수 +1)"
+                        android:textColor="#656565"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
 
@@ -222,9 +244,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
                 android:weightSum="2">
 
                 <Button
@@ -262,7 +284,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            app:adUnitId="ca-app-pub-9542671839226052/7967803943">
 
         </com.google.android.gms.ads.AdView>
 

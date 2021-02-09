@@ -18,6 +18,7 @@ import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,11 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         val rewardAd_btn = findViewById<Button>(R.id.rewardAd_btn)
         val progressbar = findViewById<ProgressBar>(R.id.progressBar)
+        val adtextview = findViewById<TextView>(R.id.adtextview)
         val adLoadCallback = object : RewardedAdLoadCallback() {
             override fun onRewardedAdLoaded() {
                 super.onRewardedAdLoaded()
                 progressbar.visibility = GONE
                 rewardAd_btn.visibility = VISIBLE
+                adtextview.visibility = GONE
             }
         }
         mRewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
