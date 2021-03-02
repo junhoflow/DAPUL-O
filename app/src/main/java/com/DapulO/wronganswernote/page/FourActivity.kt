@@ -1,4 +1,4 @@
-package com.DapulO.wronganswernote
+package com.DapulO.wronganswernote.page
 
 import android.app.Activity
 import android.content.Context
@@ -16,6 +16,10 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.DapulO.wronganswernote.*
+import com.DapulO.wronganswernote.screenshot.Screenshot
+import com.DapulO.wronganswernote.screenshot.Sharescreenshot
+import com.DapulO.wronganswernote.screenshot.Showscreenshot
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -24,10 +28,10 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EightActivity : AppCompatActivity() {
+class FourActivity : AppCompatActivity() {
+
     private val OPEN_GALLERY = 1
     var checking : Int = 0
-
     lateinit var sharedPreferences: SharedPreferences
 
     lateinit var screenshot : Screenshot
@@ -36,13 +40,13 @@ class EightActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_eight)
+        setContentView(R.layout.activity_four)
 
         val adView = findViewById<AdView>(R.id.adView)
-        MobileAds.initialize(this, "ca-app-pub-9542671839226052/2307518815")
+        MobileAds.initialize(this, "ca-app-pub-9542671839226052/5125253846")
         adView.loadAd(AdRequest.Builder().build())
 
-        constsView = findViewById(R.id.ConstsView8)
+        constsView = findViewById(R.id.ConstsView4)
         screenshot = Screenshot(this)
         sharescreenshot = Sharescreenshot()
 
@@ -55,18 +59,14 @@ class EightActivity : AppCompatActivity() {
         val imageView2 = findViewById<ImageView>(R.id.imageView2)
         val imageView3 = findViewById<ImageView>(R.id.imageView3)
         val imageView4 = findViewById<ImageView>(R.id.imageView4)
-        val imageView5 = findViewById<ImageView>(R.id.imageView5)
-        val imageView6 = findViewById<ImageView>(R.id.imageView6)
-        val imageView7 = findViewById<ImageView>(R.id.imageView7)
-        val imageView8 = findViewById<ImageView>(R.id.imageView8)
         imageView.setOnClickListener{
             checking = 1
-            App.eight_count++
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
-        var angle1 = 0f
+        var angle = 0f
         var angle2 = 0f
         imageView.setOnLongClickListener(View.OnLongClickListener {
             val popupMenu: PopupMenu = PopupMenu(this, imageView)
@@ -77,8 +77,8 @@ class EightActivity : AppCompatActivity() {
                         setBlackAndWhite(imageView)
                     }
                     R.id.rotate1 ->{
-                        imageView.rotation = 90f + angle1
-                        angle1 += 90f
+                        imageView.rotation = 90f + angle
+                        angle += 90f
                     }
                     R.id.rotate2 ->{
                         imageView.rotation = 180f + angle2
@@ -92,7 +92,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView2.setOnClickListener{
             checking = 2
-            App.eight_count++
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -123,7 +123,7 @@ class EightActivity : AppCompatActivity() {
         })
         imageView3.setOnClickListener{
             checking = 3
-            App.eight_count++
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -152,9 +152,10 @@ class EightActivity : AppCompatActivity() {
             popupMenu.show()
             true
         })
+
         imageView4.setOnClickListener{
             checking = 4
-            App.eight_count++
+            App.four_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -183,138 +184,15 @@ class EightActivity : AppCompatActivity() {
             popupMenu.show()
             true
         })
-        imageView5.setOnClickListener{
-            checking = 5
-            App.eight_count++
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent, OPEN_GALLERY)
-        }
-        var angle9 = 0f
-        var angle10 = 0f
-        imageView5.setOnLongClickListener(View.OnLongClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this, imageView5)
-            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-                when(item.itemId) {
-                    R.id.filter -> {
-                        setBlackAndWhite(imageView5)
-                    }
-                    R.id.rotate1 ->{
-                        imageView5.rotation = 90f + angle9
-                        angle9 += 90f
-                    }
-                    R.id.rotate2 ->{
-                        imageView5.rotation = 180f + angle10
-                        angle10 -= 180f
-                    }
-                }
-                true
-            })
-            popupMenu.show()
-            true
-        })
-        imageView6.setOnClickListener{
-            checking = 6
-            App.eight_count++
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent, OPEN_GALLERY)
-        }
-        var angle11 = 0f
-        var angle12 = 0f
-        imageView6.setOnLongClickListener(View.OnLongClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this, imageView6)
-            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-                when(item.itemId) {
-                    R.id.filter -> {
-                        setBlackAndWhite(imageView6)
-                    }
-                    R.id.rotate1 ->{
-                        imageView6.rotation = 90f + angle11
-                        angle11 += 90f
-                    }
-                    R.id.rotate2 ->{
-                        imageView6.rotation = 180f + angle12
-                        angle12 -= 180f
-                    }
-                }
-                true
-            })
-            popupMenu.show()
-            true
-        })
-        imageView7.setOnClickListener{
-            checking = 7
-            App.eight_count++
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent, OPEN_GALLERY)
-        }
-        var angle13 = 0f
-        var angle14 = 0f
-        imageView7.setOnLongClickListener(View.OnLongClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this, imageView7)
-            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-                when(item.itemId) {
-                    R.id.filter -> {
-                        setBlackAndWhite(imageView7)
-                    }
-                    R.id.rotate1 ->{
-                        imageView7.rotation = 90f + angle13
-                        angle13 += 90f
-                    }
-                    R.id.rotate2 ->{
-                        imageView7.rotation = 180f + angle14
-                        angle14 -= 180f
-                    }
-                }
-                true
-            })
-            popupMenu.show()
-            true
-        })
-        imageView8.setOnClickListener{
-            checking = 8
-            App.eight_count++
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent, OPEN_GALLERY)
-        }
-        var angle15 = 0f
-        var angle16 = 0f
-        imageView8.setOnLongClickListener(View.OnLongClickListener {
-            val popupMenu: PopupMenu = PopupMenu(this, imageView8)
-            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-                when(item.itemId) {
-                    R.id.filter -> {
-                        setBlackAndWhite(imageView8)
-                    }
-                    R.id.rotate1 ->{
-                        imageView8.rotation = 90f + angle15
-                        angle15 += 90f
-                    }
-                    R.id.rotate2 ->{
-                        imageView8.rotation = 180f + angle16
-                        angle16 -= 180f
-                    }
-                }
-                true
-            })
-            popupMenu.show()
-            true
-        })
-        val cancel_8 = findViewById<Button>(R.id.cancel_8)
-        cancel_8.setOnClickListener{
+
+        val cancel_4 = findViewById<Button>(R.id.cancel_4)
+        cancel_4.setOnClickListener{
             finish()
         }
 
-        val flat_logo8 = findViewById<ImageView>(R.id.flat_logo8)
-        flat_logo8.setOnClickListener{
-            val popupMenu: PopupMenu = PopupMenu(this, flat_logo8)
+        val flat_logo4 = findViewById<ImageView>(R.id.flat_logo4)
+        flat_logo4.setOnClickListener{
+            val popupMenu: PopupMenu = PopupMenu(this, flat_logo4)
             popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when(item.itemId) {
@@ -327,7 +205,7 @@ class EightActivity : AppCompatActivity() {
                     }
                     R.id.item3 ->{
                         bagiscreenshot()
-                        App.eight_clicked++
+                        App.four_clicked++
                     }
                 }
                 true
@@ -335,40 +213,41 @@ class EightActivity : AppCompatActivity() {
             popupMenu.show()
         }
 
-        if (App.eight_count > 6 || App.eight_clicked == 1) {
+        if (App.four_count > 2 || App.four_clicked == 1) {
             App.TotalCount++
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt("CNT", App.TotalCount)
             editor.apply()
-            App.eight_clicked = 0
-            App.eight_count = 0
+            App.four_clicked = 0
+            App.four_count = 0
         }
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (App.eight_count > 6 || App.eight_clicked == 1) {
+        if (App.four_count > 2 || App.four_clicked == 1) {
             App.TotalCount++
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt("CNT", App.TotalCount)
             editor.apply()
-            App.eight_clicked = 0
-            App.eight_count = 0
+            App.four_clicked = 0
+            App.four_count = 0
         }
     }
 
     override fun onPause() {
         super.onPause()
-        if (App.eight_count > 6 || App.eight_clicked == 1) {
+        if (App.four_count > 2 || App.four_clicked == 1) {
             App.TotalCount++
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt("CNT", App.TotalCount)
             editor.apply()
-            App.eight_clicked = 0
-            App.eight_count = 0
+            App.four_clicked = 0
+            App.four_count = 0
         }
     }
 
@@ -404,19 +283,11 @@ class EightActivity : AppCompatActivity() {
                     val imageView2 = findViewById<ImageView>(R.id.imageView2)
                     val imageView3 = findViewById<ImageView>(R.id.imageView3)
                     val imageView4 = findViewById<ImageView>(R.id.imageView4)
-                    val imageView5 = findViewById<ImageView>(R.id.imageView5)
-                    val imageView6 = findViewById<ImageView>(R.id.imageView6)
-                    val imageView7 = findViewById<ImageView>(R.id.imageView7)
-                    val imageView8 = findViewById<ImageView>(R.id.imageView8)
                     when(checking){
                         1 -> imageView.setImageBitmap(bitmap)
                         2 -> imageView2.setImageBitmap(bitmap)
                         3 -> imageView3.setImageBitmap(bitmap)
                         4 -> imageView4.setImageBitmap(bitmap)
-                        5 -> imageView5.setImageBitmap(bitmap)
-                        6 -> imageView6.setImageBitmap(bitmap)
-                        7 -> imageView7.setImageBitmap(bitmap)
-                        8 -> imageView8.setImageBitmap(bitmap)
                     }
                 }catch (e: Exception){
                     e.printStackTrace()

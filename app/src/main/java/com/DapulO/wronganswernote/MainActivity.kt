@@ -13,12 +13,15 @@ import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.DapulO.wronganswernote.page.EightActivity
+import com.DapulO.wronganswernote.page.FourActivity
+import com.DapulO.wronganswernote.page.SixActivity
+import com.DapulO.wronganswernote.page.TwoActivity
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {

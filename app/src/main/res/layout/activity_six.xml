@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:id="@+id/ConstsView6"
-    tools:context=".TwoActivity">
+    tools:context=".page.TwoActivity">
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"

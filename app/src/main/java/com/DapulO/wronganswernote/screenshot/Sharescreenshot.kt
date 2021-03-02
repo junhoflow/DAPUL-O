@@ -1,4 +1,4 @@
-package com.DapulO.wronganswernote
+package com.DapulO.wronganswernote.screenshot
 
 import android.content.Intent
 import android.net.Uri

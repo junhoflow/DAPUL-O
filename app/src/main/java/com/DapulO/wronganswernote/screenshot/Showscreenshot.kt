@@ -1,10 +1,11 @@
-package com.DapulO.wronganswernote
+package com.DapulO.wronganswernote.screenshot
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.DapulO.wronganswernote.R
 
 class Showscreenshot : AppCompatActivity() {
     private lateinit var viewscreenshot : ImageView

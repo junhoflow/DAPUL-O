@@ -1,4 +1,4 @@
-package com.DapulO.wronganswernote
+package com.DapulO.wronganswernote.page
 
 import android.app.Activity
 import android.content.Context
@@ -16,6 +16,10 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.DapulO.wronganswernote.*
+import com.DapulO.wronganswernote.screenshot.Screenshot
+import com.DapulO.wronganswernote.screenshot.Sharescreenshot
+import com.DapulO.wronganswernote.screenshot.Showscreenshot
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
