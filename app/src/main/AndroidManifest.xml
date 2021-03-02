@@ -24,11 +24,12 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9542671839226052~3186250553" />
 
-        <activity android:name="com.DapulO_pro.wronganswernote.Showscreenshot" />
-        <activity android:name="com.DapulO_pro.wronganswernote.EightActivity" />
-        <activity android:name="com.DapulO_pro.wronganswernote.SixActivity" />
-        <activity android:name="com.DapulO_pro.wronganswernote.FourActivity" />
-        <activity android:name="com.DapulO_pro.wronganswernote.TwoActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.screenshot.Showscreenshot" />
+        <activity android:name="com.DapulO_pro.wronganswernote.page.EightActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.page.SixActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.page.FourActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.page.TwoActivity" />
+        <activity android:name="com.DapulO_pro.wronganswernote.page.TwoVerticalActivity" />
         <activity android:name="com.DapulO_pro.wronganswernote.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

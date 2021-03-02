@@ -1,4 +1,4 @@
-package com.DapulO_pro.wronganswernote
+package com.DapulO_pro.wronganswernote.screenshot
 
 import android.content.Context
 import android.graphics.Bitmap

@@ -1,4 +1,4 @@
-package com.DapulO_pro.wronganswernote
+package com.DapulO_pro.wronganswernote.page
 
 import android.app.Activity
 import android.content.Context
@@ -17,6 +17,10 @@ import android.view.View
 import android.view.View.OnLongClickListener
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.DapulO_pro.wronganswernote.*
+import com.DapulO_pro.wronganswernote.screenshot.Screenshot
+import com.DapulO_pro.wronganswernote.screenshot.Sharescreenshot
+import com.DapulO_pro.wronganswernote.screenshot.Showscreenshot
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*

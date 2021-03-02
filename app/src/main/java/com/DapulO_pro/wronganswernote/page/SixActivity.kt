@@ -1,4 +1,4 @@
-package com.DapulO_pro.wronganswernote
+package com.DapulO_pro.wronganswernote.page
 
 import android.app.Activity
 import android.content.Context
@@ -16,15 +16,19 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.DapulO_pro.wronganswernote.*
+import com.DapulO_pro.wronganswernote.screenshot.Screenshot
+import com.DapulO_pro.wronganswernote.screenshot.Sharescreenshot
+import com.DapulO_pro.wronganswernote.screenshot.Showscreenshot
 import java.io.File
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FourActivity : AppCompatActivity() {
-
+class SixActivity : AppCompatActivity() {
     private val OPEN_GALLERY = 1
     var checking : Int = 0
+
     lateinit var sharedPreferences: SharedPreferences
 
     lateinit var screenshot : Screenshot
@@ -33,9 +37,10 @@ class FourActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_four)
+        setContentView(R.layout.activity_six)
 
-        constsView = findViewById(R.id.ConstsView4)
+
+        constsView = findViewById(R.id.ConstsView6)
         screenshot = Screenshot(this)
         sharescreenshot = Sharescreenshot()
 
@@ -48,14 +53,16 @@ class FourActivity : AppCompatActivity() {
         val imageView2 = findViewById<ImageView>(R.id.imageView2)
         val imageView3 = findViewById<ImageView>(R.id.imageView3)
         val imageView4 = findViewById<ImageView>(R.id.imageView4)
+        val imageView5 = findViewById<ImageView>(R.id.imageView5)
+        val imageView6 = findViewById<ImageView>(R.id.imageView6)
         imageView.setOnClickListener{
             checking = 1
-            App.four_count++
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
         }
-        var angle = 0f
+        var angle1 = 0f
         var angle2 = 0f
         imageView.setOnLongClickListener(View.OnLongClickListener {
             val popupMenu: PopupMenu = PopupMenu(this, imageView)
@@ -66,8 +73,8 @@ class FourActivity : AppCompatActivity() {
                         setBlackAndWhite(imageView)
                     }
                     R.id.rotate1 ->{
-                        imageView.rotation = 90f + angle
-                        angle += 90f
+                        imageView.rotation = 90f + angle1
+                        angle1 += 90f
                     }
                     R.id.rotate2 ->{
                         imageView.rotation = 180f + angle2
@@ -81,7 +88,7 @@ class FourActivity : AppCompatActivity() {
         })
         imageView2.setOnClickListener{
             checking = 2
-            App.four_count++
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -112,7 +119,7 @@ class FourActivity : AppCompatActivity() {
         })
         imageView3.setOnClickListener{
             checking = 3
-            App.four_count++
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -141,10 +148,9 @@ class FourActivity : AppCompatActivity() {
             popupMenu.show()
             true
         })
-
         imageView4.setOnClickListener{
             checking = 4
-            App.four_count++
+            App.six_count++
             val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
             startActivityForResult(intent, OPEN_GALLERY)
@@ -173,19 +179,80 @@ class FourActivity : AppCompatActivity() {
             popupMenu.show()
             true
         })
-
-        val cancel_4 = findViewById<Button>(R.id.cancel_4)
-        cancel_4.setOnClickListener{
+        imageView5.setOnClickListener{
+            checking = 5
+            App.six_count++
+            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.setType("image/*")
+            startActivityForResult(intent, OPEN_GALLERY)
+        }
+        var angle9 = 0f
+        var angle10 = 0f
+        imageView5.setOnLongClickListener(View.OnLongClickListener {
+            val popupMenu: PopupMenu = PopupMenu(this, imageView5)
+            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.filter -> {
+                        setBlackAndWhite(imageView5)
+                    }
+                    R.id.rotate1 ->{
+                        imageView5.rotation = 90f + angle9
+                        angle9 += 90f
+                    }
+                    R.id.rotate2 ->{
+                        imageView5.rotation = 180f + angle10
+                        angle10 -= 180f
+                    }
+                }
+                true
+            })
+            popupMenu.show()
+            true
+        })
+        imageView6.setOnClickListener{
+            checking = 6
+            App.six_count++
+            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.setType("image/*")
+            startActivityForResult(intent, OPEN_GALLERY)
+        }
+        var angle11 = 0f
+        var angle12 = 0f
+        imageView6.setOnLongClickListener(View.OnLongClickListener {
+            val popupMenu: PopupMenu = PopupMenu(this, imageView6)
+            popupMenu.menuInflater.inflate(R.menu.image_menu,popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.filter -> {
+                        setBlackAndWhite(imageView6)
+                    }
+                    R.id.rotate1 ->{
+                        imageView6.rotation = 90f + angle11
+                        angle11 += 90f
+                    }
+                    R.id.rotate2 ->{
+                        imageView6.rotation = 180f + angle12
+                        angle12 -= 180f
+                    }
+                }
+                true
+            })
+            popupMenu.show()
+            true
+        })
+        val cancel_6 = findViewById<Button>(R.id.cancel_6)
+        cancel_6.setOnClickListener{
             finish()
         }
 
-        val flat_logo4 = findViewById<ImageView>(R.id.flat_logo4)
-        flat_logo4.setOnClickListener{
-            val popupMenu: PopupMenu = PopupMenu(this, flat_logo4)
+        val flat_logo6 = findViewById<ImageView>(R.id.flat_logo6)
+        flat_logo6.setOnClickListener{
+            val popupMenu: PopupMenu = PopupMenu(this, flat_logo6)
             popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when(item.itemId) {
-                    R.id.item1 -> {
+                    R.id.item1 ->{
                         ambilscreenshot(constsView)
                         Toast.makeText(this, "시험지가 저장되었습니다.", Toast.LENGTH_SHORT).show()
                     }
@@ -194,7 +261,7 @@ class FourActivity : AppCompatActivity() {
                     }
                     R.id.item3 ->{
                         bagiscreenshot()
-                        App.four_clicked++
+                        App.six_clicked++
                     }
                 }
                 true
@@ -202,41 +269,40 @@ class FourActivity : AppCompatActivity() {
             popupMenu.show()
         }
 
-        if (App.four_count > 2 || App.four_clicked == 1) {
+        if (App.six_count > 4 || App.six_clicked == 1) {
             App.TotalCount++
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt("CNT", App.TotalCount)
             editor.apply()
-            App.four_clicked = 0
-            App.four_count = 0
+            App.six_clicked = 0
+            App.six_count = 0
         }
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (App.four_count > 2 || App.four_clicked == 1) {
+        if (App.six_count > 4 || App.six_clicked == 1) {
             App.TotalCount++
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt("CNT", App.TotalCount)
             editor.apply()
-            App.four_clicked = 0
-            App.four_count = 0
+            App.six_clicked = 0
+            App.six_count = 0
         }
     }
 
     override fun onPause() {
         super.onPause()
-        if (App.four_count > 2 || App.four_clicked == 1) {
+        if (App.six_count > 4 || App.six_clicked == 1) {
             App.TotalCount++
             sharedPreferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
             editor.putInt("CNT", App.TotalCount)
             editor.apply()
-            App.four_clicked = 0
-            App.four_count = 0
+            App.six_clicked = 0
+            App.six_count = 0
         }
     }
 
@@ -272,11 +338,15 @@ class FourActivity : AppCompatActivity() {
                     val imageView2 = findViewById<ImageView>(R.id.imageView2)
                     val imageView3 = findViewById<ImageView>(R.id.imageView3)
                     val imageView4 = findViewById<ImageView>(R.id.imageView4)
+                    val imageView5 = findViewById<ImageView>(R.id.imageView5)
+                    val imageView6 = findViewById<ImageView>(R.id.imageView6)
                     when(checking){
                         1 -> imageView.setImageBitmap(bitmap)
                         2 -> imageView2.setImageBitmap(bitmap)
                         3 -> imageView3.setImageBitmap(bitmap)
                         4 -> imageView4.setImageBitmap(bitmap)
+                        5 -> imageView5.setImageBitmap(bitmap)
+                        6 -> imageView6.setImageBitmap(bitmap)
                     }
                 }catch (e: Exception){
                     e.printStackTrace()
