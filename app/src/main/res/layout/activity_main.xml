@@ -45,13 +45,13 @@
 
                 <Button
                     android:id="@+id/link_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_gravity="center"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="5dp"
                     android:text="광고없는 PRO버전 다운받기"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     app:backgroundTint="#D29C27B0" />
 
             </LinearLayout>
@@ -189,7 +189,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="2"
                     android:text="광고보고 횟수 추가(+1)"
-                    android:textSize="10sp"
+                    android:textSize="9sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                     app:backgroundTint="#F44336" />

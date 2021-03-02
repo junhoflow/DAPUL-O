@@ -14,14 +14,14 @@ import java.io.IOException
 
 class Screenshot(private val mContext: Context) {
 
-    fun getViewScreenshot(view: View, height: Int, width:Int): Bitmap? {
-        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        val bgDrawable: Drawable = view.background
-        bgDrawable.draw(canvas)
-        view.draw(canvas)
-        return bitmap
-    }
+//    fun getViewScreenshot(view: View, height: Int, width:Int): Bitmap? {
+//        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+//        val canvas = Canvas(bitmap)
+//        val bgDrawable: Drawable = view.background
+//        bgDrawable.draw(canvas)
+//        view.draw(canvas)
+//        return bitmap
+//    }
 
     fun saveScreenshot(bitmap: Bitmap){
         val filename = "Screenshot.jpg"
