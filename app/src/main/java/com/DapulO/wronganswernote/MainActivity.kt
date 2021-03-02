@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
@@ -13,10 +14,7 @@ import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.DapulO.wronganswernote.page.EightActivity
-import com.DapulO.wronganswernote.page.FourActivity
-import com.DapulO.wronganswernote.page.SixActivity
-import com.DapulO.wronganswernote.page.TwoActivity
+import com.DapulO.wronganswernote.page.*
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
@@ -93,14 +91,28 @@ class MainActivity : AppCompatActivity() {
 
         preferences = getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
+        val link_btn = findViewById<Button>(R.id.link_btn)
+        link_btn.setOnClickListener{
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.DapulO_pro.wronganswernote"))
+            startActivity(intent)
+        }
 
         val button_two = findViewById<Button>(R.id.button_two)
+        val button_two_vertical = findViewById<Button>(R.id.button_two_vertical)
         val button_four = findViewById<Button>(R.id.button_four)
         val button_six = findViewById<Button>(R.id.button_six)
         val button_eight = findViewById<Button>(R.id.button_eight)
         button_two.setOnClickListener {
             if(App.restricted == 0) {
                 val intent = Intent(this, TwoActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "횟수가 부족합니다. 광고시청 혹은 다풀오PRO버전을 이용해보세요!", Toast.LENGTH_SHORT).show()
+            }
+        }
+        button_two_vertical.setOnClickListener {
+            if(App.restricted == 0) {
+                val intent = Intent(this, TwoVerticalActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "횟수가 부족합니다. 광고시청 혹은 다풀오PRO버전을 이용해보세요!", Toast.LENGTH_SHORT).show()

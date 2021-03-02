@@ -29,6 +29,7 @@
         <activity android:name="com.DapulO.wronganswernote.page.SixActivity" />
         <activity android:name="com.DapulO.wronganswernote.page.FourActivity" />
         <activity android:name="com.DapulO.wronganswernote.page.TwoActivity" />
+        <activity android:name="com.DapulO.wronganswernote.page.TwoVerticalActivity" />
         <activity android:name="com.DapulO.wronganswernote.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
