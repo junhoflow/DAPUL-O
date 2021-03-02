@@ -1,1 +1,1 @@
-WrongAnswerNote
+WrongProblemNote
