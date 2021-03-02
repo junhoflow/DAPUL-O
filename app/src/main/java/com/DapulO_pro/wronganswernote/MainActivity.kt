@@ -9,6 +9,7 @@ import android.preference.PreferenceManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.DapulO_pro.wronganswernote.page.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,11 +28,16 @@ class MainActivity : AppCompatActivity() {
 
 
         val button_two = findViewById<Button>(R.id.button_two)
+        val button_two_vertical = findViewById<Button>(R.id.button_two_vertical)
         val button_four = findViewById<Button>(R.id.button_four)
         val button_six = findViewById<Button>(R.id.button_six)
         val button_eight = findViewById<Button>(R.id.button_eight)
         button_two.setOnClickListener {
             val intent = Intent(this, TwoActivity::class.java)
+            startActivity(intent)
+        }
+        button_two_vertical.setOnClickListener {
+            val intent = Intent(this, TwoVerticalActivity::class.java)
             startActivity(intent)
         }
         button_four.setOnClickListener {
